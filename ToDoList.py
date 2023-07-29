@@ -29,12 +29,51 @@ my_list = Listbox(my_frame,
     
     )
 
-my_list.pack()
+my_list.pack(side=LEFT, fill=BOTH)
 
 # testing and putting in list box
 test = ["get food", "study", "gym", "dance"]
 for i in test:
     my_list.insert(END, i)
     
+# Create scrollbar
+my_scrollbar = Scrollbar(my_frame)
+my_scrollbar.pack(side=RIGHT, fill=BOTH)
+
+# add scrollbar
+my_list.config(yscrollcommand= my_scrollbar.set)
+my_scrollbar.config(command=my_list.yview)
+    
+# create entry box - adds items to list
+my_entry = Entry(root, font=("Helvetica", 24))
+my_entry.pack(pady=20)
+
+# create a button frame
+button_frame = Frame(root)
+button_frame.pack(pady=20)
+
+# BUTTON FUNCTIONS
+def delete_item():
+   my_list.delete(ANCHOR) #anchor is whatever is highlighted
+
+def add_item():
+    my_list.insert(END, my_entry.get())
+    my_entry.delete(0,END) # how to delete from entry box
+
+def cross_item():
+    pass
+def uncross_item():
+    pass    
+# add buttons
+delete_button = Button(button_frame, text="Delete Item", command = delete_item)
+add_button = Button(button_frame, text="Add Item", command = add_item)
+cross_button = Button(button_frame, text="Cross Off Item", command = cross_item)
+uncross_button = Button(button_frame, text="Uncross Off Item", command = uncross_item)
+
+delete_button.grid(row=0, column=0)
+add_button.grid(row=0, column=1, padx=20)
+cross_button.grid(row=0, column=2 )
+uncross_button.grid(row=0, column=3,  padx=20)
+
 # Run Window
 root.mainloop()
