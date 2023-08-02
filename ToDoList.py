@@ -61,7 +61,8 @@ def add_item():
     my_entry.delete(0,END) # how to delete from entry box
 
 def cross_item():
-    pass
+    
+
 def uncross_item():
     pass    
 # add buttons
