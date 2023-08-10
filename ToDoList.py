@@ -112,7 +112,7 @@ my_menu.add_cascade(label="File",menu=file_menu)
 # file menu functions
 def save_list():
     file_name = filedialog.asksaveasfilename(
-        initialdir="C:/Users/fonsy/Documents",
+        initialdir="C:\Users\fonsy\Documents\Projects\Python\ToDoList\lists",
         title="Save File",
         filetypes=(("Dat Files","*.dat"),
                    ("All Files", "*.*"))
@@ -134,7 +134,25 @@ def save_list():
     pickle.dump(items, output_file)
 
 def open_list():
-    pass
+    file_name = filedialog.asksaveasfilename(
+        initialdir="C:\Users\fonsy\Documents\Projects\Python\ToDoList\lists",
+        title="Save File",
+        filetypes=(("Dat Files","*.dat"),
+                   ("All Files", "*.*"))
+    )
+    if file_name:
+        my_list.delete(0,END)
+        
+        #open file
+        input_file = open(file_name, 'rb')
+        
+        #load data
+        items = pickle.load(input_file)
+        
+        #output items to screem
+        for i in items:
+            my_list.insert(END,i)
+            
 
 def clear_list():
     my_list.delete(0,END)
