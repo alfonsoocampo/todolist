@@ -1,2 +1,2 @@
 # todolist
-A to do list and work hour calculator.
+A to do list (possibly a work hour calculator added as well)
